@@ -1,6 +1,6 @@
 site:
-  title: FIXME Course Title
-  start_page: REPLACEREPONAME::index.adoc
+  title: Installation of Red Hat OpenStack Platform 16.2
+  start_page: rhosp-install-16.2::index.adoc
 
 content:
   sources:
