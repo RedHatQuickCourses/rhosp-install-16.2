@@ -1,0 +1,22 @@
+= Install and Configure Undercloud
+
+. Install the Undercloud
++
+[source, bash]
+----
+openstack undercloud install
+----
++
+[NOTE]
+====
+Undercloud installation may take around **40 minutes**.
+====
+
+. Configure DNS for ctlplane Subnet
++
+[source, bash]
+----
+source stackrc
+openstack subnet list
+openstack subnet set --dns-nameserver 8.8.8.8 ctlplane-subnet
+----

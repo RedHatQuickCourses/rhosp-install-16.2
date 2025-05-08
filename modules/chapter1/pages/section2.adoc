@@ -1,6 +1,46 @@
-= Section 2
+= Register and update the Director Node
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+. Login to the director node from the Workstation VM:
++
+[source, bash]
+----
+ssh stack@director
+----
+
+. Register the Director Node
++
+[source, bash]
+----
+sudo subscription-manager register
+sudo subscription-manager attach --pool=FIXME_POOLID
+sudo subscription-manager release --set=8.4
+----
++
+NOTE: Replace `FIXME_POOLID` with your actual Red Hat subscription pool ID.
+
+. Enable Required Repositories and Modules
++
+[source, bash]
+----
+sudo subscription-manager repos --disable=*
+
+sudo subscription-manager repos \
+  --enable=rhel-8-for-x86_64-baseos-rpms \
+  --enable=rhel-8-for-x86_64-appstream-rpms \
+  --enable=rhel-8-for-x86_64-highavailability-rpms \
+  --enable=ansible-2.9-for-rhel-8-x86_64-rpms \
+  --enable=openstack-16.2-for-rhel-8-x86_64-rpms \
+  --enable=fast-datapath-for-rhel-8-x86_64-rpms \
+  --enable=advanced-virt-for-rhel-8-x86_64-rpms
+
+sudo dnf module reset container-tools
+sudo dnf module enable -y container-tools:3.0
+----
+
+. System Update and Reboot
++
+[source, bash]
+----
+sudo dnf update -y
+sudo reboot
+----

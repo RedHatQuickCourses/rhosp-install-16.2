@@ -1,7 +1,8 @@
-= Chapter 1
+= Installation of Red Hat OpenStack Platform 16.2
 
-In this section, we cover... FIXME
+In this section, we will...
 
-
-- Add or remove section entries in the `antora.yaml` file as needed.
-- Ensure you create or delete the corresponding directory for the chapter accordingly.
+* Configure and install the undercloud.
+* Configure the pre-requisites for overcloud deployment.
+* Derive the templates for overcloud deployment.
+* Deploy the overcloud.

@@ -1,0 +1,32 @@
+= Container Image Preparation
+
+. Prepare Container Image Parameters
++
+[source, bash]
+----
+openstack tripleo container image prepare default \
+  --local-push-destination \
+  --output-env-file containers-prepare-parameter.yaml
+----
+
+. Add Registry Credentials
++
+[source, bash]
+----
+cat >> containers-prepare-parameter.yaml << 'EOF'
+  ContainerImageRegistryCredentials:
+    registry.redhat.io:
+      1979710|test-rhosp16.1: FIXME
+EOF
+----
++
+[NOTE]
+To use *ContainerImageRegistryCredentials*, use the Registry Service Account
+from https://access.redhat.com/terms-based-registry/[Red Hat's Terms-Based Registry,window=_blank].
+
+. Verify the content of containers-prepare-parameter.yaml file before proceeding further.
++
+[source, bash]
+----
+cat containers-prepare-parameter.yaml
+----

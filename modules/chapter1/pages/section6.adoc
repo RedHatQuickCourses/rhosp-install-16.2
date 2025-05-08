@@ -1,0 +1,146 @@
+= Upload and Register Overcloud Images
+
+. Upload Overcloud Images
++
+[source, bash]
+----
+sudo dnf install -y rhosp-director-images
+
+cd ~/images
+for i in /usr/share/rhosp-director-images/overcloud-full-latest-16.2.tar /usr/share/rhosp-director-images/ironic-python-agent-latest-16.2.tar; do tar -xvf $i; done
+
+openstack overcloud image upload --image-path /home/stack/images
+openstack image list
+----
+
+. Import Baremetal Nodes
++
+[source, bash]
+----
+cd ~
+cat > instackenv.json << EOF
+{
+  "nodes": [
+    {
+      "ports": [{
+        "physical_network": "ctlplane",
+        "address": "52:54:00:00:F9:14"
+      }],
+      "name": "overcloud-control0",
+      "capabilities": "boot_option:local",
+      "cpu": "6",
+      "memory": "16384",
+      "disk": "50",
+      "arch": "x86_64",
+      "pm_type": "ipmi",
+      "pm_user": "admin",
+      "pm_password": "redhat",
+      "pm_addr": "172.25.249.120"
+
+    },
+    {
+      "ports": [{
+        "physical_network": "ctlplane",
+        "address": "52:54:00:00:F9:15"
+      }],
+      "name": "overcloud-control1",
+      "capabilities": "boot_option:local",
+      "cpu": "6",
+      "memory": "16384",
+      "disk": "50",
+      "arch": "x86_64",
+      "pm_type": "ipmi",
+      "pm_user": "admin",
+      "pm_password": "redhat",
+      "pm_addr": "172.25.249.121"
+    },
+    {
+      "ports": [{
+        "physical_network": "ctlplane",
+        "address": "52:54:00:00:F9:16"
+      }],
+      "name": "overcloud-control2",
+      "capabilities": "boot_option:local",
+      "cpu": "6",
+      "memory": "16384",
+      "disk": "50",
+      "arch": "x86_64",
+      "pm_type": "ipmi",
+      "pm_user": "admin",
+      "pm_password": "redhat",
+      "pm_addr": "172.25.249.122"
+    },
+    {
+      "ports": [{
+        "physical_network": "ctlplane",
+        "address": "52:54:00:00:F9:1E"
+      }],
+      "name": "overcloud-compute0",
+      "capabilities": "boot_option:local",
+      "cpu": "4",
+      "memory": "6144",
+      "disk": "50",
+      "arch": "x86_64",
+      "pm_type": "ipmi",
+      "pm_user": "admin",
+      "pm_password": "redhat",
+      "pm_addr": "172.25.249.130"
+    },
+    {
+      "ports": [{
+        "physical_network": "ctlplane",
+        "address": "52:54:00:00:F9:1F"
+      }],
+      "name": "overcloud-compute1",
+      "capabilities": "boot_option:local",
+      "cpu": "4",
+      "memory": "6144",
+      "disk": "50",
+      "arch": "x86_64",
+      "pm_type": "ipmi",
+      "pm_user": "admin",
+      "pm_password": "redhat",
+      "pm_addr": "172.25.249.131"
+    }
+  ]
+}
+EOF
+
+openstack overcloud node import ~/instackenv.json
+----
++
+[NOTE]
+The configuration settings provided are tailored for the lab environment used in this training. If you are working in a different lab setup, you may need to adjust the settings accordingly.
+
+. Introspect and Provide Nodes
++
+[source, bash]
+----
+openstack overcloud node introspect --all-manageable
+openstack baremetal node list
+----
++
+[NOTE]
+Make sure the node status reported by _openstack baremetal node list_ command for all the nodes is FIXME before proceeding further.
+
+. Set the node status to *available* state using `openstack baremetal node provide` command.
++
+[source, bash]
+----
+for node in $(openstack baremetal node list -c Name -f value); do
+  openstack baremetal node provide "$node"
+done
+----
+
+. Test IPMI Access (optional)
++
+[source, bash]
+----
+sudo yum install ipmitool -y
+
+ipmitool -I lanplus -H 172.25.249.120 -U admin -P redhat -R 20 -N 15 power status
+ipmitool -I lanplus -H 172.25.249.121 -U admin -P redhat -R 20 -N 15 power status
+ipmitool -I lanplus -H 172.25.249.122 -U admin -P redhat -R 20 -N 15 power status
+ipmitool -I lanplus -H 172.25.249.130 -U admin -P redhat -R 20 -N 15 power status
+ipmitool -I lanplus -H 172.25.249.131 -U admin -P redhat -R 20 -N 15 power status
+----

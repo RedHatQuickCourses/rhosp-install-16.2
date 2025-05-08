@@ -1,6 +1,61 @@
-= Section 3
+= Undercloud Setup
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+. Create Undercloud Configuration File
++
+[source, bash]
+----
+cat > undercloud.conf << EOF 
+[DEFAULT]
+undercloud_hostname = director.example.com
+local_interface = eth1
+container_images_file = /home/stack/containers-prepare-parameter.yaml
+local_ip = 172.25.249.11/24
+undercloud_public_host = 172.25.249.2
+undercloud_admin_host = 172.25.249.3
+undercloud_ntp_servers = time.google.com
+undercloud_nameservers = 172.25.250.220
+enabled_hardware_types = ipmi,redfish,ilo,idrac,manual-management
+
+[ctlplane-subnet]
+local_subnet = ctlplane-subnet
+cidr = 172.25.249.0/24
+dhcp_start = 172.25.249.50
+dhcp_end = 172.25.249.120
+gateway = 172.25.249.11
+inspection_iprange = 172.25.249.150,172.25.249.180
+masquerade = true
+EOF
+----
++
+[NOTE]
+The configuration settings provided are tailored for the lab environment used in this training. If you are working in a different lab setup, you may need to adjust the settings accordingly.
+
+
+. Start a `tmux` Session
++
+[source, bash]
+----
+tmux
+----
+
+. Prepare Directories
++
+[source, bash]
+----
+mkdir ~/images ~/templates
+----
+
+. Install Required Packages
++
+[source, bash]
+----
+sudo dnf install -y python3-tripleoclient
+----
+
+
+*Optional:* If Ceph tools are needed:
+[source, bash]
+----
+sudo subscription-manager repos --enable=rhceph-4-tools-for-rhel-8-x86_64-rpms
+sudo dnf install -y ceph-ansible
+----

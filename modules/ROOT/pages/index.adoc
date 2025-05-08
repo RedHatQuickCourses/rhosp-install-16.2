@@ -1,27 +1,34 @@
-= An Example Quick Course
+= Installation of Red Hat OpenStack Platform 16.2
 :navtitle: Home
 
 == Introduction
 
-Course Title: Course title FIXME
+Course Title: Installation of Red Hat OpenStack Platform 16.2
 
 Description:
-Course description FIXME
 
-Duration: FIXME hours
+This hands-on lab offers step-by-step guidance for deploying Red Hat OpenStack Platform (RHOSP) 16.2 using a director node, three controller nodes, and two compute nodes. It is ideal for system administrators and engineers looking to gain practical experience with RHOSP 16.2 in a lab environment.
+
+
+Duration: 2 hours
 
 == Objectives
 
 On completing this course, you should be able to:
 
-* Observable, measurable objective...
-* Observable, measurable objective...
-* Observable, measurable objective...
+* Configure and install the undercloud.
+* Configure the pre-requisites for overcloud deployment.
+* Derive the templates for overcloud deployment.
+* Deploy the overcloud.
+* Perform basic troubleshooting of RHOSP deployment process.
 
 == Prerequisites
 
 This course assumes that you have the following prior experience:
 
-* Course or experience...
-* Course or experience...
-* Course or experience...
+* You are an RHCE or have equivalent knowledge.
+
+* Either you have completed the Red Hat OpenStack Administration I: Core Operations for Domain Operators course (CL110) or have equivalent knowledge.
+
+* Either you have completed the Red Hat OpenStack Administration II: Day 2 Operations for Cloud Operators course (CL210) or have equivalent knowledge.
+

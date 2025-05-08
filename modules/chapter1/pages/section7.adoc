@@ -1,0 +1,21 @@
+= Configure and Assign Nodes
+
+. Check the current node profiles
++
+[source, bash]
+----
+openstack overcloud profiles list
+----
+
+. Set Node Profiles
++
+[source, bash]
+----
+openstack baremetal node set overcloud-control0 --property capabilities='profile:control,boot_option:local'
+openstack baremetal node set overcloud-control1 --property capabilities='profile:control,boot_option:local'
+openstack baremetal node set overcloud-control2 --property capabilities='profile:control,boot_option:local'
+openstack baremetal node set overcloud-compute0 --property capabilities='profile:compute,boot_option:local'
+openstack baremetal node set overcloud-compute1 --property capabilities='profile:compute,boot_option:local'
+
+openstack overcloud profiles list
+----

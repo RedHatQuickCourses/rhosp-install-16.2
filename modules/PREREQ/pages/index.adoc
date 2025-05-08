@@ -1,0 +1,21 @@
+# Prerequisites and Hardware information
+
+**Prerequisites:**
+
+- RHEL 8.4 system for the **director** node.
+- Access to RHOSP16.2 software repositories.
+- Subscription credentials.
+- IPMI access to physical or virtual baremetal nodes.
+- Access to Red Hat Customer Portal.
+- Details of the hardware being used for deployment.
+
+Make sure you are aware about the details of the available hardware on which deployment is being done.
+
+Refer to the table below for the details of the lab being used in this training.
+
+link:_images/rhosp16.2-network-details-role.png[image:_images/rhosp16.2-network-details-role.png[Click to view]]
+
+
+Refer to the below image for network layout of the setup.
+
+link:_images/rhosp16.2-network-layout-role.png[image:_images/rhosp16.2-network-layout-role.png[Click to view]]

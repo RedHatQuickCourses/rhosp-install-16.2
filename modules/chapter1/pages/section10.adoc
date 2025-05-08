@@ -1,0 +1,32 @@
+= Troubleshooting Overcloud Deployment
+
+. Check Stack Status
++
+[source, bash]
+----
+openstack stack list
+----
+
+. View Failure Details
++
+[source, bash]
+----
+openstack stack failures list overcloud --long
+----
+
+. Identify Failed Resources
++
+[source, bash]
+----
+openstack stack resource list overcloud | grep -v COMPLETE
+openstack stack resource show overcloud <resource>
+----
+
+. Review Server Status and overcloud deployment status.
++
+[source, bash]
+----
+openstack server list
+openstack overcloud status
+openstack overcloud failures
+----

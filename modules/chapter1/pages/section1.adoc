@@ -1,6 +1,50 @@
-= Section 1
+= Prepare the Director Node
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+. Login to the director node from the workstation VM as student user and switch as root user.
++
+[source, bash]
+----
+ssh director
+sudo su - 
+----
+
+. Set the hostname for director node
++
+[source, bash]
+----
+echo "director.example.com" > /etc/hostname
+----
+
+. Add Stack user and configure it for password less sudo access
++
+[source, bash]
+----
+useradd stack
+echo "student" | passwd --stdin stack
+echo "stack ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/stack
+----
+
+. Disable RHEL DVD and run subscription manager cleanup
++
+[source, bash]
+----
+mkdir /etc/yum.repos.d/disabled
+mv /etc/yum.repos.d/rhel_dvd.repo /etc/yum.repos.d/disabled/
+dnf clean all
+subscription-manager clean
+----
+
+. Expand the filesystem and then reboot
++
+[source, bash]
+----
+lsblk
+df -h
+growpart /dev/vda 3
+xfs_growfs /
+lsblk
+df -h
+
+reboot
+----
+NOTE: This last step is specific to the ROLE lab environment being offered here.
