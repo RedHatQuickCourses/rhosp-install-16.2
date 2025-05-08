@@ -160,7 +160,7 @@
 <p>Add Registry Credentials</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &gt;&gt; containers-prepare-parameter.yaml &lt;&lt; 'EOF'
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &gt;&gt; containers-prepare-parameter.yaml &lt;&lt; EOF
   ContainerImageRegistryCredentials:
     registry.redhat.io:
       1979710|test-rhosp16.1: FIXME
@@ -185,7 +185,7 @@ from <a href="https://access.redhat.com/terms-based-registry/" target="_blank" r
 <p>Verify the content of containers-prepare-parameter.yaml file before proceeding further.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat containers-prepare-parameter.yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">vi containers-prepare-parameter.yaml</code></pre>
 </div>
 </div>
 </li>

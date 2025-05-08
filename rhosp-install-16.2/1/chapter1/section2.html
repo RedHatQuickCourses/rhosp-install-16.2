@@ -158,8 +158,15 @@
 <p>Register the Director Node</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo subscription-manager register
-sudo subscription-manager attach --pool=FIXME_POOLID
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo subscription-manager register</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Attach the pool ID and fix the release to rhel8.4.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo subscription-manager attach --pool=FIXME_POOLID
 sudo subscription-manager release --set=8.4</code></pre>
 </div>
 </div>

@@ -159,6 +159,19 @@ openstack overcloud image upload --image-path /home/stack/images
 openstack image list</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">Sample output</div>
+<div class="content">
+<pre>(undercloud) [stack@director images]$ openstack image list
++--------------------------------------+------------------------+--------+
+| ID                                   | Name                   | Status |
++--------------------------------------+------------------------+--------+
+| 4026d733-e778-4134-89af-12f4e290877b | overcloud-full         | active |
+| 033345fd-8ef6-45eb-9b05-26247563ebe9 | overcloud-full-initrd  | active |
+| 2695ca18-8f5d-4110-b38c-7ef59867a839 | overcloud-full-vmlinuz | active |
++--------------------------------------+------------------------+--------+</pre>
+</div>
+</div>
 </li>
 <li>
 <p>Import Baremetal Nodes</p>
@@ -270,7 +283,7 @@ The configuration settings provided are tailored for the lab environment used in
 </div>
 </li>
 <li>
-<p>Introspect and Provide Nodes</p>
+<p>Introspect the Nodes</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">openstack overcloud node introspect --all-manageable
@@ -284,10 +297,26 @@ openstack baremetal node list</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Make sure the node status reported by <em>openstack baremetal node list</em> command for all the nodes is FIXME before proceeding further.
+Make sure the node status reported by <em>openstack baremetal node list</em> command for all the nodes is <strong>power off</strong> and <strong>manageable</strong>  before proceeding further.
 </td>
 </tr>
 </table>
+</div>
+<div class="listingblock">
+<div class="title">Sample output</div>
+<div class="content">
+<pre>(undercloud) [stack@director ~]$ openstack baremetal node list
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| UUID                                 | Name               | Instance UUID | Power State | Provisioning State | Maintenance |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| 9b36dcf8-c392-4d35-86f7-8de29d6cd573 | overcloud-control0 | None          | power off   | manageable         | False       |
+| de91d861-c7bf-4163-868e-7be4fe0c024d | overcloud-control1 | None          | power off   | manageable         | False       |
+| abbb37f0-3eee-478b-a5b1-7c7e42d4702b | overcloud-control2 | None          | power on    | manageable         | False       |
+| 318ca8cc-47ce-4e06-83d7-0995c0de3df4 | overcloud-compute0 | None          | power off   | manageable         | False       |
+| 4e2bd467-b8ca-4e9a-9443-8dade93172a3 | overcloud-compute1 | None          | power off   | manageable         | False       |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+(undercloud) [stack@director ~]$</pre>
+</div>
 </div>
 </li>
 <li>
@@ -296,8 +325,29 @@ Make sure the node status reported by <em>openstack baremetal node list</em> com
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">for node in $(openstack baremetal node list -c Name -f value); do
   openstack baremetal node provide "$node"
-done</code></pre>
+done
+
+openstack baremetal node list</code></pre>
 </div>
+</div>
+<div class="listingblock">
+<div class="title">Sample output</div>
+<div class="content">
+<pre>(undercloud) [stack@director ~]$ openstack baremetal node list
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| UUID                                 | Name               | Instance UUID | Power State | Provisioning State | Maintenance |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| 9b36dcf8-c392-4d35-86f7-8de29d6cd573 | overcloud-control0 | None          | power off   | available          | False       |
+| de91d861-c7bf-4163-868e-7be4fe0c024d | overcloud-control1 | None          | power off   | available          | False       |
+| abbb37f0-3eee-478b-a5b1-7c7e42d4702b | overcloud-control2 | None          | power off   | available          | False       |
+| 318ca8cc-47ce-4e06-83d7-0995c0de3df4 | overcloud-compute0 | None          | power off   | available          | False       |
+| 4e2bd467-b8ca-4e9a-9443-8dade93172a3 | overcloud-compute1 | None          | power off   | available          | False       |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+(undercloud) [stack@director ~]$</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the provisioning state is now <strong>available</strong></p>
 </div>
 </li>
 <li>
