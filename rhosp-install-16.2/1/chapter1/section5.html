@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Undercloud Setup :: Installation of Red Hat OpenStack Platform 16.2</title>
-    <link rel="prev" href="section2.html">
-    <link rel="next" href="section4.html">
+    <title>Install and Configure Undercloud :: Installation of Red Hat OpenStack Platform 16.2</title>
+    <link rel="prev" href="section4.html">
+    <link rel="next" href="section6.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -70,13 +70,13 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section2.html">Register and update the Director Node</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section3.html">Undercloud Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section4.html">Container Image Preparation</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="section5.html">Install and Configure Undercloud</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -134,7 +134,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Installation of Red Hat OpenStack Platform 16.2</a></li>
-    <li><a href="section3.html">Undercloud Setup</a></li>
+    <li><a href="section5.html">Install and Configure Undercloud</a></li>
   </ul>
 </nav>
 </div>
@@ -143,34 +143,14 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Undercloud Setup</h1>
+<h1 class="page">Install and Configure Undercloud</h1>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create Undercloud Configuration File</p>
+<p>Install the Undercloud</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &gt; undercloud.conf &lt;&lt; EOF
-[DEFAULT]
-undercloud_hostname = director.example.com
-local_interface = eth1
-container_images_file = /home/stack/containers-prepare-parameter.yaml
-local_ip = 172.25.249.11/24
-undercloud_public_host = 172.25.249.2
-undercloud_admin_host = 172.25.249.3
-undercloud_ntp_servers = time.google.com
-undercloud_nameservers = 172.25.250.220
-enabled_hardware_types = ipmi,redfish,ilo,idrac,manual-management
-
-[ctlplane-subnet]
-local_subnet = ctlplane-subnet
-cidr = 172.25.249.0/24
-dhcp_start = 172.25.249.50
-dhcp_end = 172.25.249.120
-gateway = 172.25.249.11
-inspection_iprange = 172.25.249.150,172.25.249.180
-masquerade = true
-EOF</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">openstack undercloud install</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -180,50 +160,29 @@ EOF</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The configuration settings provided are tailored for the lab environment used in this training. If you are working in a different lab setup, you may need to adjust the settings accordingly.
+<div class="paragraph">
+<p>Undercloud installation may take around <strong>40 minutes</strong>.</p>
+</div>
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Start a <code>tmux</code> Session</p>
+<p>Configure DNS for ctlplane Subnet</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tmux</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Prepare Directories</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir ~/images ~/templates</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Install Required Packages</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo dnf install -y python3-tripleoclient</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">source stackrc
+openstack subnet list
+openstack subnet set --dns-nameserver 8.8.8.8 ctlplane-subnet</code></pre>
 </div>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><strong>Optional:</strong> If Ceph tools are needed:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo subscription-manager repos --enable=rhceph-4-tools-for-rhel-8-x86_64-rpms
-sudo dnf install -y ceph-ansible</code></pre>
-</div>
-</div>
 <nav class="pagination">
-  <span class="prev"><a href="section2.html">Register and update the Director Node</a></span>
-  <span class="next"><a href="section4.html">Container Image Preparation</a></span>
+  <span class="prev"><a href="section4.html">Container Image Preparation</a></span>
+  <span class="next"><a href="section6.html">Upload and Register Overcloud Images</a></span>
 </nav>
 </article>
   </div>

@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Undercloud Setup :: Installation of Red Hat OpenStack Platform 16.2</title>
-    <link rel="prev" href="section2.html">
-    <link rel="next" href="section4.html">
+    <title>Troubleshooting Overcloud Deployment :: Installation of Red Hat OpenStack Platform 16.2</title>
+    <link rel="prev" href="section9.html">
+    <link rel="next" href="../appendix/appendix.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -70,7 +70,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section2.html">Register and update the Director Node</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section3.html">Undercloud Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -91,7 +91,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section9.html">Process the templates and deploy Overcloud</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="section10.html">Troubleshooting Overcloud Deployment</a>
   </li>
 </ul>
@@ -134,7 +134,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Installation of Red Hat OpenStack Platform 16.2</a></li>
-    <li><a href="section3.html">Undercloud Setup</a></li>
+    <li><a href="section10.html">Troubleshooting Overcloud Deployment</a></li>
   </ul>
 </nav>
 </div>
@@ -143,87 +143,49 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Undercloud Setup</h1>
+<h1 class="page">Troubleshooting Overcloud Deployment</h1>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create Undercloud Configuration File</p>
+<p>Check Stack Status</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &gt; undercloud.conf &lt;&lt; EOF
-[DEFAULT]
-undercloud_hostname = director.example.com
-local_interface = eth1
-container_images_file = /home/stack/containers-prepare-parameter.yaml
-local_ip = 172.25.249.11/24
-undercloud_public_host = 172.25.249.2
-undercloud_admin_host = 172.25.249.3
-undercloud_ntp_servers = time.google.com
-undercloud_nameservers = 172.25.250.220
-enabled_hardware_types = ipmi,redfish,ilo,idrac,manual-management
-
-[ctlplane-subnet]
-local_subnet = ctlplane-subnet
-cidr = 172.25.249.0/24
-dhcp_start = 172.25.249.50
-dhcp_end = 172.25.249.120
-gateway = 172.25.249.11
-inspection_iprange = 172.25.249.150,172.25.249.180
-masquerade = true
-EOF</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The configuration settings provided are tailored for the lab environment used in this training. If you are working in a different lab setup, you may need to adjust the settings accordingly.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Start a <code>tmux</code> Session</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tmux</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">openstack stack list</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Prepare Directories</p>
+<p>View Failure Details</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir ~/images ~/templates</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">openstack stack failures list overcloud --long</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Install Required Packages</p>
+<p>Identify Failed Resources</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo dnf install -y python3-tripleoclient</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">openstack stack resource list overcloud | grep -v COMPLETE
+openstack stack resource show overcloud &lt;resource&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Review Server Status and overcloud deployment status.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">openstack server list
+openstack overcloud status
+openstack overcloud failures</code></pre>
 </div>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><strong>Optional:</strong> If Ceph tools are needed:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo subscription-manager repos --enable=rhceph-4-tools-for-rhel-8-x86_64-rpms
-sudo dnf install -y ceph-ansible</code></pre>
-</div>
-</div>
 <nav class="pagination">
-  <span class="prev"><a href="section2.html">Register and update the Director Node</a></span>
-  <span class="next"><a href="section4.html">Container Image Preparation</a></span>
+  <span class="prev"><a href="section9.html">Process the templates and deploy Overcloud</a></span>
+  <span class="next"><a href="../appendix/appendix.html">Appendix</a></span>
 </nav>
 </article>
   </div>

@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Undercloud Setup :: Installation of Red Hat OpenStack Platform 16.2</title>
-    <link rel="prev" href="section2.html">
-    <link rel="next" href="section4.html">
+    <title>Prerequisites and Hardware information :: Installation of Red Hat OpenStack Platform 16.2</title>
+    <link rel="prev" href="../LABENV/index.html">
+    <link rel="next" href="../chapter1/index.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -53,8 +53,8 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../PREREQ/index.html">Prerequisites and Hardware information</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Prerequisites and Hardware information</a>
   </li>
 </ul>
   </li>
@@ -62,37 +62,37 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Installation of Red Hat OpenStack Platform 16.2</a>
+    <a class="nav-link" href="../chapter1/index.html">Installation of Red Hat OpenStack Platform 16.2</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section1.html">Prepare the Director Node</a>
+    <a class="nav-link" href="../chapter1/section1.html">Prepare the Director Node</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section2.html">Register and update the Director Node</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="section3.html">Undercloud Setup</a>
+    <a class="nav-link" href="../chapter1/section2.html">Register and update the Director Node</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section4.html">Container Image Preparation</a>
+    <a class="nav-link" href="../chapter1/section3.html">Undercloud Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section5.html">Install and Configure Undercloud</a>
+    <a class="nav-link" href="../chapter1/section4.html">Container Image Preparation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section6.html">Upload and Register Overcloud Images</a>
+    <a class="nav-link" href="../chapter1/section5.html">Install and Configure Undercloud</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section7.html">Configure and Assign Nodes</a>
+    <a class="nav-link" href="../chapter1/section6.html">Upload and Register Overcloud Images</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section8.html">Create the template files</a>
+    <a class="nav-link" href="../chapter1/section7.html">Configure and Assign Nodes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section9.html">Process the templates and deploy Overcloud</a>
+    <a class="nav-link" href="../chapter1/section8.html">Create the template files</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section10.html">Troubleshooting Overcloud Deployment</a>
+    <a class="nav-link" href="../chapter1/section9.html">Process the templates and deploy Overcloud</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section10.html">Troubleshooting Overcloud Deployment</a>
   </li>
 </ul>
   </li>
@@ -133,8 +133,8 @@
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Installation of Red Hat OpenStack Platform 16.2</a></li>
-    <li><a href="section3.html">Undercloud Setup</a></li>
+    <li><a href="../index.html">Installation of Red Hat OpenStack Platform 16.2</a></li>
+    <li><a href="index.html">Prerequisites and Hardware information</a></li>
   </ul>
 </nav>
 </div>
@@ -143,87 +143,50 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Undercloud Setup</h1>
-<div class="olist arabic">
-<ol class="arabic">
+<h1 class="page">Prerequisites and Hardware information</h1>
+<div class="paragraph">
+<p><strong>Prerequisites:</strong></p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p>Create Undercloud Configuration File</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &gt; undercloud.conf &lt;&lt; EOF
-[DEFAULT]
-undercloud_hostname = director.example.com
-local_interface = eth1
-container_images_file = /home/stack/containers-prepare-parameter.yaml
-local_ip = 172.25.249.11/24
-undercloud_public_host = 172.25.249.2
-undercloud_admin_host = 172.25.249.3
-undercloud_ntp_servers = time.google.com
-undercloud_nameservers = 172.25.250.220
-enabled_hardware_types = ipmi,redfish,ilo,idrac,manual-management
-
-[ctlplane-subnet]
-local_subnet = ctlplane-subnet
-cidr = 172.25.249.0/24
-dhcp_start = 172.25.249.50
-dhcp_end = 172.25.249.120
-gateway = 172.25.249.11
-inspection_iprange = 172.25.249.150,172.25.249.180
-masquerade = true
-EOF</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The configuration settings provided are tailored for the lab environment used in this training. If you are working in a different lab setup, you may need to adjust the settings accordingly.
-</td>
-</tr>
-</table>
-</div>
+<p>RHEL 8.4 system for the <strong>director</strong> node.</p>
 </li>
 <li>
-<p>Start a <code>tmux</code> Session</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tmux</code></pre>
-</div>
-</div>
+<p>Access to RHOSP16.2 software repositories.</p>
 </li>
 <li>
-<p>Prepare Directories</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir ~/images ~/templates</code></pre>
-</div>
-</div>
+<p>Subscription credentials.</p>
 </li>
 <li>
-<p>Install Required Packages</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo dnf install -y python3-tripleoclient</code></pre>
-</div>
-</div>
+<p>IPMI access to physical or virtual baremetal nodes.</p>
 </li>
-</ol>
+<li>
+<p>Access to Red Hat Customer Portal.</p>
+</li>
+<li>
+<p>Details of the hardware being used for deployment.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p><strong>Optional:</strong> If Ceph tools are needed:</p>
+<p>Make sure you are aware about the details of the available hardware on which deployment is being done.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo subscription-manager repos --enable=rhceph-4-tools-for-rhel-8-x86_64-rpms
-sudo dnf install -y ceph-ansible</code></pre>
+<div class="paragraph">
+<p>Refer to the table below for the details of the lab being used in this training.</p>
 </div>
+<div class="paragraph">
+<p><a href="_images/rhosp16.2-network-details-role.png"><span class="image unresolved"><img src="_images/rhosp16.2-network-details-role.png" alt="Click to view"></span></a></p>
+</div>
+<div class="paragraph">
+<p>Refer to the below image for network layout of the setup.</p>
+</div>
+<div class="paragraph">
+<p><a href="_images/rhosp16.2-network-layout-role.png"><span class="image unresolved"><img src="_images/rhosp16.2-network-layout-role.png" alt="Click to view"></span></a></p>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="section2.html">Register and update the Director Node</a></span>
-  <span class="next"><a href="section4.html">Container Image Preparation</a></span>
+  <span class="prev"><a href="../LABENV/index.html">Lab Environment</a></span>
+  <span class="next"><a href="../chapter1/index.html">Installation of Red Hat OpenStack Platform 16.2</a></span>
 </nav>
 </article>
   </div>
