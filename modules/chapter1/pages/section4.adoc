@@ -13,7 +13,7 @@ openstack tripleo container image prepare default \
 +
 [source, bash]
 ----
-cat >> containers-prepare-parameter.yaml << 'EOF'
+cat >> containers-prepare-parameter.yaml << EOF
   ContainerImageRegistryCredentials:
     registry.redhat.io:
       1979710|test-rhosp16.1: FIXME
@@ -28,5 +28,5 @@ from https://access.redhat.com/terms-based-registry/[Red Hat's Terms-Based Regis
 +
 [source, bash]
 ----
-cat containers-prepare-parameter.yaml
+vi containers-prepare-parameter.yaml
 ----

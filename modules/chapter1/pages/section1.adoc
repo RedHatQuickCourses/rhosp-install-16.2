@@ -7,6 +7,8 @@
 ssh director
 sudo su - 
 ----
++
+*Password:* _student_
 
 . Set the hostname for director node
 +

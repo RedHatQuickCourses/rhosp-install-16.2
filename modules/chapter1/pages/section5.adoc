@@ -11,6 +11,32 @@ openstack undercloud install
 ====
 Undercloud installation may take around **40 minutes**.
 ====
++
+.Sample output
+----
+########################################################                                                                                                                             
+                                                                                                                                                                                     
+Deployment successful!                                                                                                                                                               
+                                                                                                                                                                                     
+########################################################                                                                                                                             
+                                                                                                                                                                                     
+Writing the stack virtual update mark file /var/lib/tripleo-heat-installer/update_mark_undercloud                                                                                    
+                                                                                                                                                                                     
+##########################################################                                                                                                                           
+                                                                                                                                                                                     
+The Undercloud has been successfully installed.                                                                                                                                      
+                                                                                                                                                                                     
+Useful files:                                                                                                                                                                        
+                                                                                                                                                                                     
+Password file is at /home/stack/undercloud-passwords.conf                                                                                                                            
+The stackrc file is at ~/stackrc                                                                                                                                                     
+                                                                                                                                                                                     
+Use these files to interact with OpenStack services, and                                                                                                                             
+ensure they are secured.                                                                                                                                                             
+                                                                                                                                                                                     
+##########################################################                                                              
+
+----
 
 . Configure DNS for ctlplane Subnet
 +

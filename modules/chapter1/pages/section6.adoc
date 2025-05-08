@@ -12,6 +12,18 @@ for i in /usr/share/rhosp-director-images/overcloud-full-latest-16.2.tar /usr/sh
 openstack overcloud image upload --image-path /home/stack/images
 openstack image list
 ----
++
+.Sample output
+----
+(undercloud) [stack@director images]$ openstack image list                                                                                                                           
++--------------------------------------+------------------------+--------+                                                                                                           
+| ID                                   | Name                   | Status |                                                                                                           
++--------------------------------------+------------------------+--------+                                                                                                           
+| 4026d733-e778-4134-89af-12f4e290877b | overcloud-full         | active |                                                                                                           
+| 033345fd-8ef6-45eb-9b05-26247563ebe9 | overcloud-full-initrd  | active |                                                                                                           
+| 2695ca18-8f5d-4110-b38c-7ef59867a839 | overcloud-full-vmlinuz | active |                                                                                                           
++--------------------------------------+------------------------+--------+                                                                                                           
+----
 
 . Import Baremetal Nodes
 +
@@ -112,7 +124,7 @@ openstack overcloud node import ~/instackenv.json
 [NOTE]
 The configuration settings provided are tailored for the lab environment used in this training. If you are working in a different lab setup, you may need to adjust the settings accordingly.
 
-. Introspect and Provide Nodes
+. Introspect the Nodes
 +
 [source, bash]
 ----
@@ -121,7 +133,23 @@ openstack baremetal node list
 ----
 +
 [NOTE]
-Make sure the node status reported by _openstack baremetal node list_ command for all the nodes is FIXME before proceeding further.
+Make sure the node status reported by _openstack baremetal node list_ command for all the nodes is *power off* and *manageable*  before proceeding further.
++
+.Sample output
+----
+(undercloud) [stack@director ~]$ openstack baremetal node list
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| UUID                                 | Name               | Instance UUID | Power State | Provisioning State | Maintenance |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| 9b36dcf8-c392-4d35-86f7-8de29d6cd573 | overcloud-control0 | None          | power off   | manageable         | False       |
+| de91d861-c7bf-4163-868e-7be4fe0c024d | overcloud-control1 | None          | power off   | manageable         | False       |
+| abbb37f0-3eee-478b-a5b1-7c7e42d4702b | overcloud-control2 | None          | power on    | manageable         | False       |
+| 318ca8cc-47ce-4e06-83d7-0995c0de3df4 | overcloud-compute0 | None          | power off   | manageable         | False       |
+| 4e2bd467-b8ca-4e9a-9443-8dade93172a3 | overcloud-compute1 | None          | power off   | manageable         | False       |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+(undercloud) [stack@director ~]$ 
+
+----
 
 . Set the node status to *available* state using `openstack baremetal node provide` command.
 +
@@ -130,7 +158,27 @@ Make sure the node status reported by _openstack baremetal node list_ command fo
 for node in $(openstack baremetal node list -c Name -f value); do
   openstack baremetal node provide "$node"
 done
+
+openstack baremetal node list
 ----
++
+.Sample output
+----
+(undercloud) [stack@director ~]$ openstack baremetal node list
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| UUID                                 | Name               | Instance UUID | Power State | Provisioning State | Maintenance |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| 9b36dcf8-c392-4d35-86f7-8de29d6cd573 | overcloud-control0 | None          | power off   | available          | False       |
+| de91d861-c7bf-4163-868e-7be4fe0c024d | overcloud-control1 | None          | power off   | available          | False       |
+| abbb37f0-3eee-478b-a5b1-7c7e42d4702b | overcloud-control2 | None          | power off   | available          | False       |
+| 318ca8cc-47ce-4e06-83d7-0995c0de3df4 | overcloud-compute0 | None          | power off   | available          | False       |
+| 4e2bd467-b8ca-4e9a-9443-8dade93172a3 | overcloud-compute1 | None          | power off   | available          | False       |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+(undercloud) [stack@director ~]$ 
+
+----
++
+Note the provisioning state is now *available*
 
 . Test IPMI Access (optional)
 +

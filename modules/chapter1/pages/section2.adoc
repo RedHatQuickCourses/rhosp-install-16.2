@@ -12,6 +12,12 @@ ssh stack@director
 [source, bash]
 ----
 sudo subscription-manager register
+----
+
+. Attach the pool ID and fix the release to rhel8.4.
++
+[source, bash]
+----
 sudo subscription-manager attach --pool=FIXME_POOLID
 sudo subscription-manager release --set=8.4
 ----
