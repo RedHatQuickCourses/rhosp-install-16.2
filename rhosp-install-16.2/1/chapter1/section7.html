@@ -170,6 +170,22 @@ openstack overcloud profiles list</code></pre>
 </li>
 </ol>
 </div>
+<div class="listingblock">
+<div class="title">Sample output</div>
+<div class="content">
+<pre>(undercloud) [stack@director ~]$ openstack overcloud profiles list
++--------------------------------------+--------------------+-----------------+-----------------+-------------------+
+| Node UUID                            | Node Name          | Provision State | Current Profile | Possible Profiles |
++--------------------------------------+--------------------+-----------------+-----------------+-------------------+
+| 9e4257c2-7c34-4bd7-a083-0dbe4c877ffc | overcloud-control0 | active          | control         |                   |
+| edcbaff7-8ec7-4b06-afbb-f4c233cf0187 | overcloud-control1 | active          | control         |                   |
+| 45dc12e8-b237-4da0-93af-9e34819fdad6 | overcloud-control2 | active          | control         |                   |
+| 4251c8b1-88bf-4d3b-8e90-b8e40e6ee547 | overcloud-compute0 | active          | compute         |                   |
+| acdb213d-8d25-4a35-b96f-148d9fc04e5f | overcloud-compute1 | active          | compute         |                   |
++--------------------------------------+--------------------+-----------------+-----------------+-------------------+
+(undercloud) [stack@director ~]$</pre>
+</div>
+</div>
 <nav class="pagination">
   <span class="prev"><a href="section6.html">Upload and Register Overcloud Images</a></span>
   <span class="next"><a href="section8.html">Create the template files</a></span>
