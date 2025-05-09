@@ -48,3 +48,13 @@ chmod +x deploy_network_isolation_external.sh
 ====
 Overcloud deployment may take approximately **45 minutes**.
 ====
+
+.Sample output for successful deployment
+----
+Overcloud Endpoint: http://172.25.250.178:5000                                                                                                                                       
+Overcloud Horizon Dashboard URL: http://172.25.250.178:80/dashboard                                                                                                                  
+Overcloud rc file: /home/stack/overcloudrc                                                                                                                                           
+Overcloud Deployed without error                                                                                                                                                     
+clean_up DeployOvercloud:                                                                                                                                                            
+END return value: None                                                                                                                                                               
+----
