@@ -1,4 +1,4 @@
-= Create the template files
+= Create the Template Files
 
 . Create Template Files
 

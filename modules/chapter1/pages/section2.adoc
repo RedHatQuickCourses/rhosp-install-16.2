@@ -1,6 +1,6 @@
-= Register and update the Director Node
+= Register and Update the Director Node
 
-. Login to the director node from the Workstation VM:
+. Log in to the director node from the Workstation VM:
 +
 [source, bash]
 ----

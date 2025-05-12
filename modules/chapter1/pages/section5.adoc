@@ -12,7 +12,7 @@ openstack undercloud install
 Undercloud installation may take around **40 minutes**.
 ====
 +
-.Sample output
+.Sample output:
 ----
 ########################################################                                                                                                                             
                                                                                                                                                                                      

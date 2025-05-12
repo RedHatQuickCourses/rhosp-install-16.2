@@ -1,4 +1,4 @@
-= Process the templates and deploy Overcloud
+= Process the Templates and Deploy Overcloud
 
 . Generate the roles data file for Controller and Compute roles.
 +
@@ -49,7 +49,7 @@ chmod +x deploy_network_isolation_external.sh
 Overcloud deployment may take approximately **45 minutes**.
 ====
 
-.Sample output for successful deployment
+.Sample output for successful deployment:
 ----
 Overcloud Endpoint: http://172.25.250.178:5000                                                                                                                                       
 Overcloud Horizon Dashboard URL: http://172.25.250.178:80/dashboard                                                                                                                  

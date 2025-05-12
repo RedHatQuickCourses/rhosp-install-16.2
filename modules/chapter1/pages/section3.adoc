@@ -1,6 +1,6 @@
 = Undercloud Setup
 
-. Create Undercloud Configuration File
+. Create the Undercloud configuration file
 +
 [source, bash]
 ----
