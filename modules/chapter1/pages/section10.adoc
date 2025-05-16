@@ -22,7 +22,7 @@ openstack stack resource list overcloud | grep -v COMPLETE
 openstack stack resource show overcloud <resource>
 ----
 
-. Review Server Status and overcloud deployment status.
+. Review Server Status and overcloud deployment status
 +
 [source, bash]
 ----

@@ -1,6 +1,6 @@
 = Prepare the Director Node
 
-. Login to the director node from the workstation VM as student user and switch as root user.
+. Log in to the director node from the workstation VM as the student user and switch to the root user.
 +
 [source, bash]
 ----

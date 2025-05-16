@@ -20,7 +20,7 @@ openstack baremetal node set overcloud-compute1 --property capabilities='profile
 openstack overcloud profiles list
 ----
 
-.Sample output
+.Sample output:
 ----
 (undercloud) [stack@director ~]$ openstack overcloud profiles list
 +--------------------------------------+--------------------+-----------------+-----------------+-------------------+

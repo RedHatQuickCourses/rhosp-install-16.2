@@ -13,7 +13,7 @@ openstack overcloud image upload --image-path /home/stack/images
 openstack image list
 ----
 +
-.Sample output
+.Sample output:
 ----
 (undercloud) [stack@director images]$ openstack image list                                                                                                                           
 +--------------------------------------+------------------------+--------+                                                                                                           
@@ -135,7 +135,7 @@ openstack baremetal node list
 [NOTE]
 Make sure the node status reported by _openstack baremetal node list_ command for all the nodes is *power off* and *manageable*  before proceeding further.
 +
-.Sample output
+.Sample output:
 ----
 (undercloud) [stack@director ~]$ openstack baremetal node list
 +--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
@@ -162,7 +162,7 @@ done
 openstack baremetal node list
 ----
 +
-.Sample output
+.Sample output:
 ----
 (undercloud) [stack@director ~]$ openstack baremetal node list
 +--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
@@ -178,7 +178,7 @@ openstack baremetal node list
 
 ----
 +
-Note the provisioning state is now *available*
+Note that the provisioning state is now *available*
 
 . Test IPMI Access (optional)
 +
