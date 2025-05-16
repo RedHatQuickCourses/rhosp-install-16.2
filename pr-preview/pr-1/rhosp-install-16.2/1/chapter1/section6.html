@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Upload and Register Overcloud Images :: Installation of Red Hat OpenStack Platform 16.2</title>
+    <link rel="prev" href="section5.html">
+    <link rel="next" href="section7.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Installation of Red Hat OpenStack Platform 16.2</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/rhosp-install-16.2/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rhosp-install-16.2" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Installation of Red Hat OpenStack Platform 16.2</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../PREREQ/index.html">Prerequisites and Hardware Information</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Installation of Red Hat OpenStack Platform 16.2</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section1.html">Prepare the Director Node</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section2.html">Register and Update the Director Node</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section3.html">Undercloud Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section4.html">Container Image Preparation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">Install and Configure Undercloud</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="section6.html">Upload and Register Overcloud Images</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section7.html">Configure and Assign Nodes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section8.html">Create the Template Files</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section9.html">Process the Templates and Deploy Overcloud</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section10.html">Troubleshooting Overcloud Deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Installation of Red Hat OpenStack Platform 16.2</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Installation of Red Hat OpenStack Platform 16.2</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Installation of Red Hat OpenStack Platform 16.2</a></li>
+    <li><a href="section6.html">Upload and Register Overcloud Images</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Upload and Register Overcloud Images</h1>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Upload Overcloud Images</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo dnf install -y rhosp-director-images
+
+cd ~/images
+for i in /usr/share/rhosp-director-images/overcloud-full-latest-16.2.tar /usr/share/rhosp-director-images/ironic-python-agent-latest-16.2.tar; do tar -xvf $i; done
+
+openstack overcloud image upload --image-path /home/stack/images
+openstack image list</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Sample output:</div>
+<div class="content">
+<pre>(undercloud) [stack@director images]$ openstack image list
++--------------------------------------+------------------------+--------+
+| ID                                   | Name                   | Status |
++--------------------------------------+------------------------+--------+
+| 4026d733-e778-4134-89af-12f4e290877b | overcloud-full         | active |
+| 033345fd-8ef6-45eb-9b05-26247563ebe9 | overcloud-full-initrd  | active |
+| 2695ca18-8f5d-4110-b38c-7ef59867a839 | overcloud-full-vmlinuz | active |
++--------------------------------------+------------------------+--------+</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Import Baremetal Nodes</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ~
+cat &gt; instackenv.json &lt;&lt; EOF
+{
+  "nodes": [
+    {
+      "ports": [{
+        "physical_network": "ctlplane",
+        "address": "52:54:00:00:F9:14"
+      }],
+      "name": "overcloud-control0",
+      "capabilities": "boot_option:local",
+      "cpu": "6",
+      "memory": "16384",
+      "disk": "50",
+      "arch": "x86_64",
+      "pm_type": "ipmi",
+      "pm_user": "admin",
+      "pm_password": "redhat",
+      "pm_addr": "172.25.249.120"
+
+    },
+    {
+      "ports": [{
+        "physical_network": "ctlplane",
+        "address": "52:54:00:00:F9:15"
+      }],
+      "name": "overcloud-control1",
+      "capabilities": "boot_option:local",
+      "cpu": "6",
+      "memory": "16384",
+      "disk": "50",
+      "arch": "x86_64",
+      "pm_type": "ipmi",
+      "pm_user": "admin",
+      "pm_password": "redhat",
+      "pm_addr": "172.25.249.121"
+    },
+    {
+      "ports": [{
+        "physical_network": "ctlplane",
+        "address": "52:54:00:00:F9:16"
+      }],
+      "name": "overcloud-control2",
+      "capabilities": "boot_option:local",
+      "cpu": "6",
+      "memory": "16384",
+      "disk": "50",
+      "arch": "x86_64",
+      "pm_type": "ipmi",
+      "pm_user": "admin",
+      "pm_password": "redhat",
+      "pm_addr": "172.25.249.122"
+    },
+    {
+      "ports": [{
+        "physical_network": "ctlplane",
+        "address": "52:54:00:00:F9:1E"
+      }],
+      "name": "overcloud-compute0",
+      "capabilities": "boot_option:local",
+      "cpu": "4",
+      "memory": "6144",
+      "disk": "50",
+      "arch": "x86_64",
+      "pm_type": "ipmi",
+      "pm_user": "admin",
+      "pm_password": "redhat",
+      "pm_addr": "172.25.249.130"
+    },
+    {
+      "ports": [{
+        "physical_network": "ctlplane",
+        "address": "52:54:00:00:F9:1F"
+      }],
+      "name": "overcloud-compute1",
+      "capabilities": "boot_option:local",
+      "cpu": "4",
+      "memory": "6144",
+      "disk": "50",
+      "arch": "x86_64",
+      "pm_type": "ipmi",
+      "pm_user": "admin",
+      "pm_password": "redhat",
+      "pm_addr": "172.25.249.131"
+    }
+  ]
+}
+EOF
+
+openstack overcloud node import ~/instackenv.json</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The configuration settings provided are tailored for the lab environment used in this training. If you are working in a different lab setup, you may need to adjust the settings accordingly.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Introspect the Nodes</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">openstack overcloud node introspect --all-manageable
+openstack baremetal node list</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Make sure the node status reported by <em>openstack baremetal node list</em> command for all the nodes is <strong>power off</strong> and <strong>manageable</strong>  before proceeding further.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Sample output:</div>
+<div class="content">
+<pre>(undercloud) [stack@director ~]$ openstack baremetal node list
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| UUID                                 | Name               | Instance UUID | Power State | Provisioning State | Maintenance |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| 9b36dcf8-c392-4d35-86f7-8de29d6cd573 | overcloud-control0 | None          | power off   | manageable         | False       |
+| de91d861-c7bf-4163-868e-7be4fe0c024d | overcloud-control1 | None          | power off   | manageable         | False       |
+| abbb37f0-3eee-478b-a5b1-7c7e42d4702b | overcloud-control2 | None          | power on    | manageable         | False       |
+| 318ca8cc-47ce-4e06-83d7-0995c0de3df4 | overcloud-compute0 | None          | power off   | manageable         | False       |
+| 4e2bd467-b8ca-4e9a-9443-8dade93172a3 | overcloud-compute1 | None          | power off   | manageable         | False       |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+(undercloud) [stack@director ~]$</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the node status to <strong>available</strong> state using <code>openstack baremetal node provide</code> command.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">for node in $(openstack baremetal node list -c Name -f value); do
+  openstack baremetal node provide "$node"
+done
+
+openstack baremetal node list</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Sample output:</div>
+<div class="content">
+<pre>(undercloud) [stack@director ~]$ openstack baremetal node list
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| UUID                                 | Name               | Instance UUID | Power State | Provisioning State | Maintenance |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+| 9b36dcf8-c392-4d35-86f7-8de29d6cd573 | overcloud-control0 | None          | power off   | available          | False       |
+| de91d861-c7bf-4163-868e-7be4fe0c024d | overcloud-control1 | None          | power off   | available          | False       |
+| abbb37f0-3eee-478b-a5b1-7c7e42d4702b | overcloud-control2 | None          | power off   | available          | False       |
+| 318ca8cc-47ce-4e06-83d7-0995c0de3df4 | overcloud-compute0 | None          | power off   | available          | False       |
+| 4e2bd467-b8ca-4e9a-9443-8dade93172a3 | overcloud-compute1 | None          | power off   | available          | False       |
++--------------------------------------+--------------------+---------------+-------------+--------------------+-------------+
+(undercloud) [stack@director ~]$</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the provisioning state is now <strong>available</strong></p>
+</div>
+</li>
+<li>
+<p>Test IPMI Access (optional)</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo yum install ipmitool -y
+
+ipmitool -I lanplus -H 172.25.249.120 -U admin -P redhat -R 20 -N 15 power status
+ipmitool -I lanplus -H 172.25.249.121 -U admin -P redhat -R 20 -N 15 power status
+ipmitool -I lanplus -H 172.25.249.122 -U admin -P redhat -R 20 -N 15 power status
+ipmitool -I lanplus -H 172.25.249.130 -U admin -P redhat -R 20 -N 15 power status
+ipmitool -I lanplus -H 172.25.249.131 -U admin -P redhat -R 20 -N 15 power status</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="section5.html">Install and Configure Undercloud</a></span>
+  <span class="next"><a href="section7.html">Configure and Assign Nodes</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

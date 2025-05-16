@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Register and Update the Director Node :: Installation of Red Hat OpenStack Platform 16.2</title>
+    <link rel="prev" href="section1.html">
+    <link rel="next" href="section3.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Installation of Red Hat OpenStack Platform 16.2</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/rhosp-install-16.2/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rhosp-install-16.2" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Installation of Red Hat OpenStack Platform 16.2</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../PREREQ/index.html">Prerequisites and Hardware Information</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Installation of Red Hat OpenStack Platform 16.2</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section1.html">Prepare the Director Node</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="section2.html">Register and Update the Director Node</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section3.html">Undercloud Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section4.html">Container Image Preparation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">Install and Configure Undercloud</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">Upload and Register Overcloud Images</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section7.html">Configure and Assign Nodes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section8.html">Create the Template Files</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section9.html">Process the Templates and Deploy Overcloud</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section10.html">Troubleshooting Overcloud Deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Installation of Red Hat OpenStack Platform 16.2</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Installation of Red Hat OpenStack Platform 16.2</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Installation of Red Hat OpenStack Platform 16.2</a></li>
+    <li><a href="section2.html">Register and Update the Director Node</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Register and Update the Director Node</h1>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in to the director node from the Workstation VM:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ssh stack@director</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Register the Director Node</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo subscription-manager register</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Attach the pool ID and fix the release to rhel8.4.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo subscription-manager attach --pool=FIXME_POOLID
+sudo subscription-manager release --set=8.4</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Replace <code>FIXME_POOLID</code> with your actual Red Hat subscription pool ID.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Enable Required Repositories and Modules</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo subscription-manager repos --disable=*
+
+sudo subscription-manager repos \
+  --enable=rhel-8-for-x86_64-baseos-rpms \
+  --enable=rhel-8-for-x86_64-appstream-rpms \
+  --enable=rhel-8-for-x86_64-highavailability-rpms \
+  --enable=ansible-2.9-for-rhel-8-x86_64-rpms \
+  --enable=openstack-16.2-for-rhel-8-x86_64-rpms \
+  --enable=fast-datapath-for-rhel-8-x86_64-rpms \
+  --enable=advanced-virt-for-rhel-8-x86_64-rpms
+
+sudo dnf module reset container-tools
+sudo dnf module enable -y container-tools:3.0</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>System Update and Reboot</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo dnf update -y
+sudo reboot</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="section1.html">Prepare the Director Node</a></span>
+  <span class="next"><a href="section3.html">Undercloud Setup</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
