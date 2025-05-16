@@ -16,13 +16,13 @@ openstack tripleo container image prepare default \
 cat >> containers-prepare-parameter.yaml << EOF
   ContainerImageRegistryCredentials:
     registry.redhat.io:
-      1979710|test-rhosp16.1: FIXME
+      TOKEN_NAME: TOKEN_PASSWORD <FIXME>
 EOF
 ----
 +
 [NOTE]
-To use *ContainerImageRegistryCredentials*, use the Registry Service Account
-from https://access.redhat.com/terms-based-registry/[Red Hat's Terms-Based Registry,window=_blank].
+Use the https://access.redhat.com/terms-based-registry[Registry Service Account,window=_blank] on RedHat Customer portal to get the _TOKEN_NAME_ and _TOKEN_PASSWORD_ strings under *ContainerImageRegistryCredentials* in the above file. +
+**Red Hat Associates** may use the details provided in LMS.
 
 . Verify the content of containers-prepare-parameter.yaml file before proceeding further.
 +

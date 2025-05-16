@@ -3,12 +3,21 @@
 == Instructions to Launch Your Lab on the Red Hat Online Learning (ROLE) Platform
 
 . **Log in** to the xref:#ROLE-Portal-Links[ROLE platform].
-. **Search** for the catalog entry: **FIXME Lab Catalog Name**.
+. **Search** for the catalog entry: **Installation of Red Hat OpenStack Platform 16.2 quick Course** (or **HOL016**).
 . **Click** on the **Launch** button for the catalog entry in the search results.
 . On the Course page, **click** the **Lab Environment** tab.
 . Click on the **Create** button on the Lab Environment page to launch the lab.
 . Wait for the lab creation process to complete.
-. When the lab is created, refer to the **SSH Private Key & Instructions** on the page to access your lab.
+
+**FOR RED HAT ASSOCIATES:**
+
+IMPORTANT: Do **NOT** refer to the _SSH Private Key & Instructions_ section on the Lab Environment page to access your lab. Use below command to access the lab environment.
+
+----
+ssh -i /home/ashishks/.ssh/pntae_training_key -J cloud-user@public.ip.of.lab:22022 student@172.25.252.1 -p 53009
+----
+
+NOTE: SSH key file _pntae_training_key_ is provided in the LMS. Replace the string _public.ip.of.lab_ in the above command with the actual *Public Ip* on the *Lab Environment* tab.
 
 [[ROLE-Portal-Links]]
 === ROLE Portal Links

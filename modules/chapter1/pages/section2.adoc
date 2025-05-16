@@ -22,7 +22,8 @@ sudo subscription-manager attach --pool=FIXME_POOLID
 sudo subscription-manager release --set=8.4
 ----
 +
-NOTE: Replace `FIXME_POOLID` with your actual Red Hat subscription pool ID.
+NOTE: Replace `FIXME_POOLID` with your actual Red Hat subscription pool ID. +
+**Red Hat Associates** may use the pool id string provided in LMS.
 
 . Enable Required Repositories and Modules
 +
