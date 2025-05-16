@@ -163,7 +163,7 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &gt;&gt; containers-prepare-parameter.yaml &lt;&lt; EOF
   ContainerImageRegistryCredentials:
     registry.redhat.io:
-      1979710|test-rhosp16.1: FIXME
+      TOKEN_NAME: TOKEN_PASSWORD &lt;FIXME&gt;
 EOF</code></pre>
 </div>
 </div>
@@ -174,8 +174,8 @@ EOF</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To use <strong>ContainerImageRegistryCredentials</strong>, use the Registry Service Account
-from <a href="https://access.redhat.com/terms-based-registry/" target="_blank" rel="noopener">Red Hat&#8217;s Terms-Based Registry</a>.
+Use the <a href="https://access.redhat.com/terms-based-registry" target="<em>blank">Registry Service Account</a> on RedHat Customer portal to get the _TOKEN_NAME</em> and <em>TOKEN_PASSWORD</em> strings under <strong>ContainerImageRegistryCredentials</strong> in the above file.<br>
+<strong>Red Hat Associates</strong> may use the details provided in LMS.
 </td>
 </tr>
 </table>
